@@ -14,30 +14,29 @@ func_str = '$x^2$'
 
 fit = nf.neuroFit()
 
-m = 20
-n = 200
+m = 20  # number of neurons
+n = 200 # number of points
 
-# generate function
+# generate model
 
 x_fit = np.linspace(-1, 1, m)
 y_fit = func(x_fit)
 
-# compute weights analytically
+# compute weights and biases analytically
 
 coeffs = fit.reluFit(m, x_fit, y_fit)
 
-# generate function and approximation at n points
+# generate function and approximation at n points in the interval [-1, 1]
 
 x = np.linspace(-1, 1, n)
 y = func(x)
 func_r = fit.reluReconst(coeffs, x)
 
-# compute mean squared error in interval
+# compute mean squared error in the interval
  
 MSE = (1/n)*np.sum((y - func_r)**2)
 
 # rescale x to show what happens outside of [-1, 1]
-
 
 x1 = np.linspace(-2, 2, 2*n)
 y1 = func(x1)
