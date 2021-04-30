@@ -1,4 +1,4 @@
-# Author Al Bernstein
+# Author: Al Bernstein
 
 # This file uses a rectified linear activation unit - relu function
 # from keras to create a line between two points
