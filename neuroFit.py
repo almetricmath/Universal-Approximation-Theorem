@@ -1,4 +1,5 @@
-# Author: Al Bernstein
+__author__ = 'Al Bernstein'
+__license__ = 'MIT License'
 
 import logging
 import matplotlib.pyplot as plt

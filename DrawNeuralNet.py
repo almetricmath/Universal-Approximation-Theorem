@@ -1,4 +1,5 @@
-#Author: Al Bernstein
+__author__ = 'Al Bernstein'
+__license__ = 'MIT License'
 
 # Draw Neural Net and output to .svg file
 

@@ -1,4 +1,5 @@
-# Author: Al Bernstein
+__author__ = 'Al Bernstein'
+__license__ = 'MIT License'
 
 # This file uses a rectified linear activation unit - relu function
 # from keras to create a line between two points

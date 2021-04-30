@@ -1,4 +1,5 @@
-# Author: Al Bernstein
+__author__ = 'Al Bernstein'
+__license__ = 'MIT License'
 
 # perfrom neural fit on normalized data and
 # then denormalizes it
