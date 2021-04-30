@@ -2,6 +2,7 @@
 
 import numpy as np
 import neuroFit as nf
+import sys
 
 # function to be approximated
 func = lambda x: x**2
@@ -28,6 +29,8 @@ y_fit = func(x_fit)
 # compute weights and biases analytically for relu activation functions
 
 coeffs = fit.reluFit(m, x_fit, y_fit)
+if coeffs == []:
+    sys.exit()
 
 # generate function and approximation at n points in the interval [a, b]
 

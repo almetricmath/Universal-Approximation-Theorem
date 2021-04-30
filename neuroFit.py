@@ -1,6 +1,6 @@
 # Author: Al Bernstein
 
-
+import logging
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from keras import backend as K
@@ -41,6 +41,11 @@ class fitPlot:
     # plot function only
 
     def plotFunc(self, _x, _y):
+        
+        if len(_x) != len(_y):
+            logging.error('_x and _y lengths are different')
+            return
+        
         plt.title(self._func_str + ' vs x -- ' + str(self._num_pts) + ' pts in x', 
                   fontsize = self._title_fontsize)
         self._ax1.plot(_x, _y, color = 'green', label = self._func_str)
@@ -50,6 +55,10 @@ class fitPlot:
     # plot function and fit
 
     def plot(self, _x, _y, _func_r):
+
+        if len(_x) != len(_y):
+            logging.error('_x and _y lengths are different')
+            return
         
         plt.title('Fit of ' + self._func_str + ' vs x -- ' + str(self._num_neurons) + ' neurons -- '  
                   + str(self._num_pts) + ' pts in x -- ' + 'mean squared error = ' + str(self._MSE), 
@@ -79,15 +88,29 @@ class neuroFit:
         x = _x
         y = _y
         
+        if len(x) != len(y):
+            logging.error('_x and _y lengths are different')
+            return []
+        
+        
         b0 = y[0]
-        m0 = (y[1] - y[0])/(x[1] - x[0])
+        den = x[1] - x[0]
+        if den == 0.0:
+            logging.error('division by zero x[' + str(1) + '] - x[' + str(0) +'] = 0')
+            return []
+            
+        m0 = (y[1] - y[0])/den
         x0 = x[0]
         
         ret = [(x0, m0, b0)] # in form (x, slope, y intercept)
         
         for i in range(2, _num_pts):
-            
-            tmp = (y[i] - y[i-1])/(x[i] - x[i-1])
+            den = (x[i] - x[i-1])
+            if den == 0.0:
+                logging.error('division by zero x[' + str(i-1) + '] - x[' + str(i) +'] = 0')
+                return []
+
+            tmp = (y[i] - y[i-1])/den
             m = tmp - m0
             m0 = tmp
             ret.append((x[i-1], m, 0))
