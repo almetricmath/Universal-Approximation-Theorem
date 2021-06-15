@@ -6,17 +6,17 @@ import neuroFit as nf
 import sys
 
 # function to be approximated
-func = lambda x: x**2
-#func = lambda x: (1/2)*(5*x**3 - 3*x)
+#func = lambda x: x**2
+func = lambda x: (1/2)*(5*x**3 - 3*x)
 
 # function string to be used in plots
-func_str = '$x^2$'
-#func_str = '(1/2)(5$x^3$ - 3x)'
+#func_str = '$x^2$'
+func_str = '(1/2)(5$x^3$ - 3x)'
 
 
 fit = nf.neuroFit()
 
-m = 3  # number of neurons
+m = 20  # number of neurons
 n = 200 # number of points
 
 # generate model using m neurons
@@ -56,5 +56,5 @@ y_max = max(func_r1)
 
 # plot results
 
-fplot = nf.fitPlot((2*a, 2*b), (y_min - 1, y_max + 1), func_str, m, n, MSE, 30, 40)
+fplot = nf.fitPlot((2*a, 2*b), (-3 + y_min - 1, 3 + y_max + 1), func_str, m, n, MSE, 30, 40)
 fplot.plot(x1, y1, func_r1)
